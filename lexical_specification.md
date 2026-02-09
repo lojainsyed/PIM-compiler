@@ -20,6 +20,7 @@ Writing computed values back to the matrix
 Reserved words with predefined meaning.
 
 int
+
 2. Identifiers
 
 Names of scalar variables.
@@ -162,6 +163,7 @@ int a = M[0][1]; // load value
 End-of-File
 
 <EOF>
+
 
 
 
