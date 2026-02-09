@@ -64,11 +64,11 @@ Used to assign values.
 
 Used in binary arithmetic expressions.
 
-+
+'+'
 
--
+'-'
 
-*
+'*'
 
 7. Delimiters / Punctuation
 
@@ -173,6 +173,7 @@ int a = M[0][1]; // load value
 End-of-File
 
 <EOF>
+
 
 
 
