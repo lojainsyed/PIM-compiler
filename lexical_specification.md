@@ -31,6 +31,7 @@ Identifiers begin with a letter or underscore and may contain letters, digits, o
 | Token Name | Pattern |
 |-----------|---------|
 | `ID` | `[A-Za-z_][A-Za-z0-9_]*` |
+
 Examples:
 
 a
@@ -44,11 +45,18 @@ sum0
 A reserved identifier representing the memory matrix.
 
 M
+| Token Name | Lexeme |
+|-----------|--------|
+| `MATRIX_ID` | `M` |
+
 
 4. Integer 
 
  Integers used for constants and matrix indices.
 
+| Token Name | Pattern |
+|-----------|---------|
+| `INT_LITERAL` | `0 \| [1-9][0-9]*` |
 Examples:
 
 0
@@ -63,27 +71,31 @@ Examples:
 
 Used to assign values.
 
-=
+| Token Name | Lexeme |
+|-----------|--------|
+| `ASSIGN` | `=` |
+
 
 6. Arithmetic Operators
 
 Used in binary arithmetic expressions.
+| Token Name | Lexeme |
+|-----------|--------|
+| `PLUS` | `+` |
+| `MINUS` | `-` |
+| `MUL` | `*` |
 
-'+'
-
-'-'
-
-'*'
 
 7. Delimiters / Punctuation
 
 Symbols used for grouping and statement termination.
 
-[
+| Token Name | Lexeme |
+|-----------|--------|
+| `LBRACKET` | `[` |
+| `RBRACKET` | `]` |
+| `SEMICOLON` | `;` |
 
-]
-
-;
 
 8. Comments
 
@@ -91,10 +103,20 @@ Used to annotate source code and ignored by the scanner.
 
 Single-line comments beginning with //
 
+| Token Name | Pattern |
+|-----------|---------|
+| `COMMENT` | `//[^\n]*` |
+
+
 9. Whitespace
 
 Used to separate tokens and improve readability.
 Whitespace is ignored by the scanner.
+
+| Token Name | Pattern |
+|-----------|---------|
+| `WHITESPACE` | `[ \t\r\n]+` |
+
 
 space
 
@@ -106,11 +128,20 @@ newline
 
 Any character sequence that does not match a valid token pattern.
 This category is used for lexical error detection.
+| Token Name | Pattern |
+|-----------|---------|
+| `ERROR` | `.` |
+
 
 11. End-of-File (EOF)
 
 A special token returned by the scanner to indicate that the input stream has been fully consumed.
 
+| Token Name |
+|-----------|
+| `EOF` |
+
+---
 
 
 ## Formal Specification:
@@ -178,6 +209,7 @@ int a = M[0][1]; // load value
 End-of-File
 
 <EOF>
+
 
 
 
