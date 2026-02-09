@@ -62,15 +62,18 @@ Build tool: Makefile
 Libraries: Standard C library
 
 ## 7. Repository Information
-- **Repository hosting service:**  
-  (e.g., GitHub, GitLab, Bitbucket)
-- **Repository URL:**  
-  (Public or private is acceptable)
+- **Repository hosting service:Github
+ 
+- **Repository URL:https://github.com/lojainsyed/PIM-compiler/edit/main/
 
 ## 8. Project Status
-- [ ] Repository created
+- [x] Repository created ] Repository created
 - [ ] README file added
 - [ ] Initial project structure committed
 
 ## 9. Additional Notes
-Any additional comments, assumptions, or ideas related to the project.
+The target Processing-in-Memory (PIM) ISA used in this project is designed for RRAM-based PIM architectures, which currently exist primarily as research prototypes rather than commercial products. As a result, the project does not rely on physical hardware and instead uses an existing PIM simulator [2] to validate the correctness of the compiler-generated ISA instructions.
+References
+[1]Chen X. Instruction set architecture (isa) for processing-in-memory dnn accelerators. arXiv preprint arXiv:2308.06449. 2023 Aug 12.
+[2] https://github.com/wangxy-2000/pimsim-nn
+
