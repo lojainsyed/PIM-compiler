@@ -157,8 +157,9 @@ Whitespace:([ \t\r\n]+)
 Invalid Tokens:(.)
 End-of-File:EOF
 
-Complete Example Program
+## 4. Complete Example Program
 
+```c
 int a = M[0][1];
 int b = M[0][2];
 
@@ -169,6 +170,7 @@ int prod = a * b;
 
 // Store result back to matrix
 M[0][3] = prod;
+
 
 Keywords:
 int x = M[1][2];
@@ -209,6 +211,7 @@ int a = M[0][1]; // load value
 End-of-File
 
 <EOF>
+
 
 
 
