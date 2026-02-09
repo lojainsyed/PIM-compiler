@@ -6,9 +6,9 @@
 The input language of this compiler is a restricted C language considering simple scalar computations and matrix memory accesses for a Processing-in-Memory (PIM) architecture
 The language supports:
 
-- Integer scalar variable declarations
+- Integer  variable declarations
 - Reading values from a fixed two-dimensional matrix `M`
-- Simple arithmetic expressions containing exactly one  operator
+- Simple arithmetic expressions containing exactly one operator
 - Writing computed values back to the matrix
 - Semicolon-terminated statements
 - Single-line comments
@@ -197,6 +197,7 @@ int a = M[0][1]; // load value
 End-of-File
 
 <EOF>
+
 
 
 
