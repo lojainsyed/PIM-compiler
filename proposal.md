@@ -28,11 +28,11 @@ assignment statements
 
 semicolon-terminated statements
 
-The language is intentionally restricted to simplify parsing and to enable a direct and transparent mapping from high-level matrix operations to PIM-oriented instructions, such as matrix-vector multiplication, as defined in the target PIM ISA [1].
+The language is intentionally restricted to simplify parsing and to enable a direct and transparent mapping from high-level matrix operations to PIM-oriented instructions, such as matrix-vector multiplication, as defined in the target PIM ISA.
 
 ## 4. Target / Output Language
 - **Output of the compiler:**  
-The output of the compiler is  Processing-in-Memory (PIM) ISA instructions, defined by a domain-specific, research-based instruction set [1]. These instructions explicitly represent scalar, vector, and matrix operations intended for execution within memory-centric architectures.
+The output of the compiler is a sequence of Processing-in-Memory (PIM) ISA instructions defined by a research-based, domain-specific instruction set [1]. These instructions explicitly represent scalar, vector, and matrix operations intended for execution within memory-centric architectures.
 - **Reason for choosing this output language:**
 The PIM ISA described in [1] introduces specialized instructions that significantly reduce data movement by performing computation directly inside memory. Targeting this ISA allows the compiler to clearly demonstrate how high-level matrix-based programs can be translated into domain-specific PIM instructions, highlighting the interaction between compiler design and emerging hardware architectures.
 
@@ -71,7 +71,7 @@ Libraries: Standard C library
 - [ ] Initial project structure committed
 
 ## 9. Additional Notes
-The target Processing-in-Memory (PIM) ISA used in this project is designed for RRAM-based PIM architectures, which currently exist primarily as research prototypes rather than commercial products. As a result, the project does not rely on physical hardware and instead uses an existing PIM simulator [2] to validate the correctness of the compiler-generated ISA instructions.
+The target Processing-in-Memory (PIM) ISA used in this project is designed for RRAM(resistive random-access memory)-based PIM architectures, which currently exist primarily as research prototypes rather than commercial products [2]. As a result, the project does not rely on physical hardware and instead uses an existing PIM simulator [2] to validate the correctness of the compiler-generated ISA instructions.
 References
 
 [1]Chen X. Instruction set architecture (isa) for processing-in-memory dnn accelerators. arXiv preprint arXiv:2308.06449. 2023 Aug 12
@@ -79,6 +79,7 @@ References
 https://arxiv.org/pdf/2308.06449
 
 [2] https://github.com/wangxy-2000/pimsim-nn
+
 
 
 
