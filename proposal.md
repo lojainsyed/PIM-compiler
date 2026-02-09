@@ -7,7 +7,7 @@
 - **Semester / Year: Spring 2026
 
 ## 2. Project Overview
-This project focuses on the design and implementation of a compiler for a Processing-in-Memory (PIM) architecture, with support for validation using an existing PIM simulator[2]. The compiler translates a restricted C-like source language into an assembly-like instruction sequence defined by a domain-specific PIM Instruction Set Architecture (ISA), which can be functionally evaluated using a publicly available PIM simulator [1].
+This project focuses on the design and implementation of a compiler for a Processing-in-Memory (PIM) architecture, with support for validation using an existing PIM simulator[2]. The compiler translates a restricted C-like source language into an assembly-like instruction sequence defined by a domain-specific PIM Instruction Set Architecture (ISA)The ISA of PIMSIM-NN is based on the document published here [1]. , which can be functionally evaluated using a publicly available PIM simulator [1].
 The target ISA is a research-defined PIM ISA proposed for executing matrix- and vector-intensive workloads directly inside memory hardware [1]. The same work also provides a simulator (PIMSIM-NN) that models the functional and cycle-level behavior of the PIM architecture without requiring physical hardware. In this project, the simulator is used only as an external validation tool to verify that the compiler-generated instructions conform to the semantics of the target ISA.
 
 The primary objective of the project is to demonstrate the complete compilation pipeline, including lexical analysis, parsing, intermediate representation (IR) generation, and code generation, while targeting an emerging memory-centric architecture. This project is only a compiler: it does not implement an assembler, does not generate machine code, and does not execute instructions on real hardware. The compiler terminates at the generation of ISA-level, assembly-like PIM instructions, which correspond directly to the instruction definitions provided in the PIM ISA specification [1].
@@ -76,4 +76,5 @@ The target Processing-in-Memory (PIM) ISA used in this project is designed for R
 References
 [1]Chen X. Instruction set architecture (isa) for processing-in-memory dnn accelerators. arXiv preprint arXiv:2308.06449. 2023 Aug 12.
 [2] https://github.com/wangxy-2000/pimsim-nn
+
 
