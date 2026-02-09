@@ -33,11 +33,13 @@ a
 temp_1
 
 sum0
+
 3. Matrix Identifier
 
 A reserved identifier representing the memory matrix.
 
 M
+
 4. Integer 
 
  Integers used for constants and matrix indices.
@@ -50,11 +52,14 @@ Examples:
 
 34
 
+
 5. Assignment Operator
+
 
 Used to assign values.
 
 =
+
 6. Arithmetic Operators
 
 Used in binary arithmetic expressions.
@@ -64,6 +69,7 @@ Used in binary arithmetic expressions.
 -
 
 *
+
 7. Delimiters / Punctuation
 
 Symbols used for grouping and statement termination.
@@ -73,11 +79,13 @@ Symbols used for grouping and statement termination.
 ]
 
 ;
+
 8. Comments
 
 Used to annotate source code and ignored by the scanner.
 
 Single-line comments beginning with //
+
 9. Whitespace
 
 Used to separate tokens and improve readability.
@@ -88,10 +96,12 @@ space
 tab
 
 newline
+
 10. Invalid / Error Tokens
 
 Any character sequence that does not match a valid token pattern.
 This category is used for lexical error detection.
+
 11. End-of-File (EOF)
 
 A special token returned by the scanner to indicate that the input stream has been fully consumed.
@@ -163,6 +173,7 @@ int a = M[0][1]; // load value
 End-of-File
 
 <EOF>
+
 
 
 
