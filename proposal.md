@@ -32,7 +32,7 @@ The language is intentionally restricted to simplify parsing and to enable a dir
 
 ## 4. Target / Output Language
 - **Output of the compiler:**  
-The output of the compiler is a sequence of Processing-in-Memory (PIM) ISA instructions defined by a research-based, domain-specific instruction set [1]. These instructions explicitly represent scalar, vector, and matrix operations intended for execution within memory-centric architectures.
+The output of the compiler is a  Processing-in-Memory (PIM) ISA instructions defined by a research-based, domain-specific instruction set [1]. These instructions explicitly represent scalar, vector, and matrix operations intended for execution within memory-centric architectures.
 - **Reason for choosing this output language:**
 The PIM ISA described in [1] introduces specialized instructions that significantly reduce data movement by performing computation directly inside memory. Targeting this ISA allows the compiler to clearly demonstrate how high-level matrix-based programs can be translated into domain-specific PIM instructions, highlighting the interaction between compiler design and emerging hardware architectures.
 
@@ -79,6 +79,7 @@ References
 https://arxiv.org/pdf/2308.06449
 
 [2] https://github.com/wangxy-2000/pimsim-nn
+
 
 
 
