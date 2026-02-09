@@ -19,7 +19,7 @@ The language supports:
 
 | Token Name | Lexeme |
 |-----------|--------|
-| `INT_KW`  | `int`  |
+| `Keyword`  | `int`  |
 
 
 
@@ -197,6 +197,7 @@ int a = M[0][1]; // load value
 End-of-File
 
 <EOF>
+
 
 
 
