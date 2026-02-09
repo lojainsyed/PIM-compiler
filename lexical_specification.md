@@ -3,14 +3,14 @@
 
 
 ## Input language: 
-The input language of this compiler is a restricted C language designed  CONSIDERING simple scalar computations and matrix memory accesses for a Processing-in-Memory (PIM) architecture
+The input language of this compiler is a restricted C language considering simple scalar computations and matrix memory accesses for a Processing-in-Memory (PIM) architecture
 The language supports:
 
 Integer variable declarations
 
 Reading values from a fixed 2-D matrix M
 
-Simple arithmetic expressions with exactly one binary operator
+Simple arithmetic expressions with exactly one operator
 
 Writing computed values back to the matrix
 
@@ -37,9 +37,9 @@ sum0
 A reserved identifier representing the memory matrix.
 
 M
-4. Integer Literals
+4. Integer 
 
-Non-negative decimal integers used for constants and matrix indices.
+ Integers used for constants and matrix indices.
 
 Examples:
 
@@ -95,27 +95,6 @@ This category is used for lexical error detection.
 
 A special token returned by the scanner to indicate that the input stream has been fully consumed.
 
-List ALL the tokens that your language will use. For example:
-
-
-### Keywords: 
-
-These are reserved words in your language 
-
-- while
-- class
-- true
-
-### Identifiers: 
-Names of variables, functions, and classes. Identifiers are arbitrary sequences of letters, digits, and the underscore character (_). They cannot contain spaces and must not begin with a digit.
-
-
-### Numbers: could be formatted as integers, or floating point values, or fractions, or in alternate bases such as binary, octal or hexadecimal.
-
-These may be formatted as integers, floating-point values, fractions, or numbers in alternate bases such as binary, octal, or hexadecimal.
-
-**Note:** 
-Read Section 3.1 for more information on tokens. Do not forget to include mathematical and logical operators, special symbols, punctuation, comments, and whitespace.
 
 
 ## Formal Specification:
@@ -153,7 +132,7 @@ Identifiers
 int temp_1 = M[10][0];
 
 
-Integer Literals
+Integer 
 
 M[12][34] = a;
 
@@ -183,6 +162,7 @@ int a = M[0][1]; // load value
 End-of-File
 
 <EOF>
+
 
 
 
