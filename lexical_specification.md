@@ -143,21 +143,7 @@ A special token returned by the scanner to indicate that the input stream has be
 
 ---
 
-
-## Formal Specification:
-Keywords:(int)
-Matrix Identifier:(M)
-Identifiers :([A-Za-z_][A-Za-z0-9_]*)
-Integer:(0|[1-9][0-9]*)
-Assignment Operator:(=)
-Arithmetic Operators:(\+|-|\*)
-Delimiters :(\[|\]|;)
-Comments:(\/\/[^\n]*)
-Whitespace:([ \t\r\n]+)
-Invalid Tokens:(.)
-End-of-File:EOF
-
-## 4. Complete Example Program
+## . Complete Example Program
 
 ```c
 int a = M[0][1];
@@ -211,6 +197,7 @@ int a = M[0][1]; // load value
 End-of-File
 
 <EOF>
+
 
 
 
