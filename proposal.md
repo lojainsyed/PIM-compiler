@@ -74,8 +74,11 @@ Libraries: Standard C library
 The target Processing-in-Memory (PIM) ISA used in this project is designed for RRAM-based PIM architectures, which currently exist primarily as research prototypes rather than commercial products. As a result, the project does not rely on physical hardware and instead uses an existing PIM simulator [2] to validate the correctness of the compiler-generated ISA instructions.
 References
 [1]Chen X. Instruction set architecture (isa) for processing-in-memory dnn accelerators. arXiv preprint arXiv:2308.06449. 2023 Aug 12
+
 https://arxiv.org/pdf/2308.06449
+
 [2] https://github.com/wangxy-2000/pimsim-nn
+
 
 
 
