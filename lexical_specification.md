@@ -16,7 +16,11 @@ The language supports:
 ## Token Categories/Types:
 
 1. Keywords
-Reserved words with predefined meaning.
+
+| Token Name | Lexeme |
+|-----------|--------|
+| `INT_KW`  | `int`  |
+
 
 int
 
@@ -172,6 +176,7 @@ int a = M[0][1]; // load value
 End-of-File
 
 <EOF>
+
 
 
 
