@@ -67,7 +67,7 @@ Libraries: Standard C library
 
 ## 8. Project Status
 - [x] Repository created ] Repository created
-- [ ] README file added
+- [x] README file added
 - [ ] Initial project structure committed
 
 ## 9. Additional Notes
@@ -79,6 +79,7 @@ References
 https://arxiv.org/pdf/2308.06449
 
 [2] https://github.com/wangxy-2000/pimsim-nn
+
 
 
 
