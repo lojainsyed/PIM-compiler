@@ -7,7 +7,7 @@ The project is developed as part of a **Compiler Design** course and focuses on 
 ---
 
 ## Project Objectives
-- Design a simple, well-defined source language suitable for PIM execution
+
 - Implement core compiler phases:
   - Lexical analysis
   - Parsing
