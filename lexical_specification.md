@@ -30,8 +30,8 @@ The language supports:
 Names of scalar variables.
 Identifiers begin with a letter or underscore and may contain letters, digits, or underscores.
 | Token Name | Pattern |
-|-----------|---------|
-| `ID` | `[A-Za-z_][A-Za-z0-9_]*` |
+|------------|----------|
+| `ID` | `[A-Za-z][A-Za-z0-9]*` |
 
 Examples:
 
@@ -41,14 +41,7 @@ temp_1
 
 sum0
 
-3. Matrix Identifier
 
-A reserved identifier representing the memory matrix.
-
-M
-| Token Name | Lexeme |
-|-----------|--------|
-| `MATRIX_ID` | `M` |
 
 
 4. Integer 
@@ -198,6 +191,7 @@ int a = M[0][1]; // load value
 End-of-File
 
 <EOF>
+
 
 
 
