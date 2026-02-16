@@ -7,9 +7,9 @@
 - Semester / Year: Spring 2026
 
 ## 2. Project Overview
-This project implements a compiler for a Processing-in-Memory (PIM) architecture that translates  C language into a domain-specific PIM Instruction Set Architecture (ISA). The target ISA is based on the specification in [1] and is validated using a publicly available PIM simulator, which serves solely as an external tool to verify the correctness and semantics of the generated instructions.
+This project implements a compiler for a Processing-in-Memory (PIM) architecture that translates C language into a domain-specific PIM Instruction Set Architecture (ISA). The target ISA is based on the specification in [1] and is validated using a publicly available PIM simulator, which serves solely as an external tool to verify the correctness and semantics of the generated instructions.
 
-The project demonstrates a complete compilation pipeline, including lexical analysis, parsing, intermediate representation (IR) generation, and code generation, targeting an emerging memory-centric computing architecture
+The project demonstrates a complete compilation pipeline, including lexical analysis, parsing, intermediate representation (IR) generation, and code generation, targeting an emerging memory-centric computing architecture. The compiler will be implemented in C.
 ## 3. Source Language
 - **Name of the source code language:**
 Restricted C Language
@@ -79,6 +79,7 @@ References
 https://arxiv.org/pdf/2308.06449
 
 [2] https://github.com/wangxy-2000/pimsim-nn
+
 
 
 
