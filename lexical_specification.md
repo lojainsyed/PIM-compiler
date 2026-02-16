@@ -18,9 +18,9 @@ The language supports:
 1. Keywords
 
 | Token Name | Lexeme |
-|-----------|--------|
-| `Keyword`  | `int`  |
-| `Keyword`  | `M`  |
+|------------|--------|
+| `KW_INT` | `int` |
+| `KW_MATRIX` | `M` |
 
 
 
