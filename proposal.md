@@ -1,10 +1,10 @@
 # Compiler Project – Initial Definition
 
 ## 1. Student Information
-- **Name:Lojain Syed
-- **Program:Ph.D. in Electrical and Computer Engineering
-- **Course:Compiler Design
-- **Semester / Year: Spring 2026
+- Name:Lojain Syed
+- Program:Ph.D. in Electrical and Computer Engineering
+- Course:Compiler Design
+- Semester / Year: Spring 2026
 
 ## 2. Project Overview
 This project implements a compiler for a Processing-in-Memory (PIM) architecture that translates  C language into a domain-specific PIM Instruction Set Architecture (ISA). The target ISA is based on the specification in [1] and is validated using a publicly available PIM simulator, which serves solely as an external tool to verify the correctness and semantics of the generated instructions.
@@ -79,6 +79,7 @@ References
 https://arxiv.org/pdf/2308.06449
 
 [2] https://github.com/wangxy-2000/pimsim-nn
+
 
 
 
