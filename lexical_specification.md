@@ -28,10 +28,11 @@ The language supports:
 2. Identifiers
 
 Names of scalar variables.
-Identifiers begin with a letter or underscore and may contain letters, digits, or underscores.
+Identifiers begin with a letter  and may contain letters, digits, or underscores.
+
 | Token Name | Pattern |
 |------------|----------|
-| `ID` | `[A-Za-z][A-Za-z0-9]*` |
+| `ID` | `[A-Za-z][A-Za-z0-9_]*` |
 
 Examples:
 
@@ -191,6 +192,7 @@ int a = M[0][1]; // load value
 End-of-File
 
 <EOF>
+
 
 
 
