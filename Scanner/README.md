@@ -6,5 +6,6 @@ make
 Run:
 ./scanner tests/valid_basic.c
 
-Tests:
-bash tests/run_tests.sh
+Run:
+./scanner tests/invalid_chars.c
+
