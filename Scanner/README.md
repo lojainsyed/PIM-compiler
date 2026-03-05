@@ -36,11 +36,11 @@ PIM-compiler3/
 From inside the `Scanner` directory:
 
 ```
-make clean
+
 make
 ```
 
-These commands execute:
+ThIS command execute:
 
 ```
 flex scanner.flex
