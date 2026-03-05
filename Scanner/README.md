@@ -9,8 +9,8 @@ The scanner reads a source file and prints the tokens recognized from the input.
 ## Directory Structure
 
 ```
-PIM-compiler3/
-└── Scanner/
+
+    Scanner/
     ├── scanner.flex
     ├── main.c
     ├── token.h
