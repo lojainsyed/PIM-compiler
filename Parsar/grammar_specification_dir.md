@@ -28,21 +28,26 @@ Write the Start Symbol here.
 S = P
 
 ### R (Production Rules):
+P → L
 
-P --> L
-L --> L S
-L --> S
-S --> int id = X ;
-S --> id = X ;
-S --> R = X ;
-X --> Y
-X --> Y + Y
-X --> Y - Y
-X --> Y * Y
-Y --> id
-Y --> int
-Y --> R
-R --> M [ int ] [ int ]
+L → L S
+L → S
+
+S → int id = X ;
+S → id = X ;
+S → R = X ;
+
+X → Y
+X → Y + Y
+X → Y - Y
+X → Y * Y
+
+Y → id
+Y → integer
+Y → R
+
+R → M [ integer ] [ integer ]
+
 
 
 ## LR(1) Automaton
