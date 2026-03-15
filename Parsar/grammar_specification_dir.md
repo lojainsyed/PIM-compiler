@@ -31,20 +31,29 @@ S = P
 P → L
 
 L → L S
+
 L → S
 
 S → int id = X ;
+
 S → id = X ;
+
 S → R = X ;
 
 X → Y
+
 X → Y + Y
+
 X → Y - Y
+
 X → Y * Y
 
 Y → id
+
 Y → integer
+
 Y → R
+
 
 R → M [ integer ] [ integer ]
 
