@@ -20,7 +20,7 @@ V = {P, L, S, X, Y, R}
 
 Write the Terminals set here.
 
-Σ = {int, id, =, ;, +, -, *, M, [, ]}
+Σ = {int, id, =, ;, +, -, *, M, [, ],integer}
 
 ### S (Start Symbol):
 
