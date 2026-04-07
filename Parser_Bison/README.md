@@ -3,7 +3,7 @@
 
 ## Overview
 
-This project implements a parser for a simple programming language using **Bison** (parser generator) and **Flex** (lexer).
+
 
 The parser checks whether an input program follows the defined grammar rules.
 
@@ -13,9 +13,9 @@ The parser checks whether an input program follows the defined grammar rules.
 
 ---
 
-## Context-Free Grammar
+##  Grammar
 
-This grammar defines a simple language with declarations, assignments, matrix references, and arithmetic expressions.
+
 
 ### Variables (Non-terminals)
 V = {P, L, S, X, Y, R}
@@ -127,7 +127,7 @@ int   a   =   M[ 0 ][ 1 ] ;
 
 ## Project Structure
 
-assignment/
+Parser_Bison/
 - parser.bison  
 - scanner.flex  
 - token.h  
@@ -174,16 +174,6 @@ Run a single test file:
 
 ---
 
-## Running All Tests
-
-for f in tests/*.c; do  
-  echo "Running $f"  
-  ./compiler.exe < $f  
-  echo ""  
-done  
-
----
-
 ## Expected Output
 
 Valid input:
@@ -213,19 +203,4 @@ Parse failed.
 
 make clean
 
----
 
-## Notes
-
-- Matrix access must be exactly M[integer][integer]  
-- Identifiers must begin with a letter  
-- Leading zeros in integers are not allowed  
-- Supported operators: +, -, *  
-- Comments are ignored  
-- Whitespace is ignored  
-
----
-
-## Conclusion
-
-This project demonstrates the use of Bison and Flex to implement a parser that validates programs based on a defined context-free grammar.
