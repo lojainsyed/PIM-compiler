@@ -1,10 +1,7 @@
 
-# Parser Implementation using Bison and Flex
+# Parser Implementation using Bison 
 
 ## Overview
-
-
-
 The parser checks whether an input program follows the defined grammar rules.
 
 ### Output Behavior
