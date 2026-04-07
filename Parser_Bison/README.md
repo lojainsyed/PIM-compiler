@@ -17,10 +17,6 @@ The parser checks whether an input program follows the defined grammar rules.
 
 This grammar defines a simple language with declarations, assignments, matrix references, and arithmetic expressions.
 
-### Formal Definition
-
-The grammar G is a 4-tuple (V, Σ, R, S)
-
 ### Variables (Non-terminals)
 V = {P, L, S, X, Y, R}
 
