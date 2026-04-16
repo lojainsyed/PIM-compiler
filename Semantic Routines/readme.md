@@ -1,21 +1,5 @@
-# Semantic Analysis – Compiler Project
+# Semantic Analysis 
 
-## Student Information
-
-| Field | Value |
-|------|------|
-| Name | Lojain Syed |
-| Course | Compiler Design |
-| Project | Semantic Analysis |
-
-## Overview
-
-This project implements semantic analysis for a simple C-like language including AST construction, symbol table generation, name resolution, and semantic error detection.
-
-## Compiler Pipeline
-
-```
-Source Code -> Scanner -> Parser -> AST -> Semantic Analysis -> Output
 ```
 
 ## Build and Run
