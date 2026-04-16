@@ -1,22 +1,13 @@
 
-# Semantic Analysis – Compiler Project
+# Semantic Analysis
 
-## Student Information
-- Name: Lojain Syed
-- Course: Compiler Design
-- Project: Semantic Analysis
 
-## Overview
-This project implements the semantic analysis phase for a restricted C-like language. The compiler performs AST construction, AST printing (readable and post-order), symbol table creation, name resolution, basic type checking, and semantic error detection.
-
-## Compiler Pipeline
-Source Code → Scanner → Parser → AST → Semantic Analysis → Output
 
 ## Implemented Features
 ### AST
 - Supports expressions, declarations, and statements
 - Readable AST printing
-- Post-order traversal printing
+
 
 ### Symbol Table
 Stores:
@@ -69,17 +60,6 @@ M[0][2] = add;
 M[0][3] = sub;
 M[0][4] = mul;
 
-### Printed AST (Post-Order)
-M[0][0] 10 MATRIX_ASSIGN
-M[0][1] 5 MATRIX_ASSIGN
-M[0][0] DECL(a) STMT_DECL
-M[0][1] DECL(b) STMT_DECL
-a b + DECL(add) STMT_DECL
-a b - DECL(sub) STMT_DECL
-a b * DECL(mul) STMT_DECL
-M[0][2] add MATRIX_ASSIGN
-M[0][3] sub MATRIX_ASSIGN
-M[0][4] mul MATRIX_ASSIGN
 
 ### Printed Symbol Table
 Name            Kind       Type            Which
@@ -102,11 +82,7 @@ var [b] : int = expr 10;
 var [a] : int = expr (b + 1);
 M[0][0] = a;
 
-### Printed AST (Post-Order)
-5 DECL(a) STMT_DECL
-10 DECL(b) STMT_DECL
-b 1 + DECL(a) STMT_DECL
-M[0][0] a MATRIX_ASSIGN
+
 
 ### Semantic Errors
 semantic error: redeclaration of identifier 'a'
@@ -129,11 +105,7 @@ var [a] : int = expr M[0][0];
 var [b] : int = expr (a + c);
 M[0][1] = b;
 
-### Printed AST (Post-Order)
-M[0][0] 10 MATRIX_ASSIGN
-M[0][0] DECL(a) STMT_DECL
-a c + DECL(b) STMT_DECL
-M[0][1] b MATRIX_ASSIGN
+
 
 ### Semantic Errors
 semantic error: undeclared identifier 'c'
