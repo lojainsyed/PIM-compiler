@@ -118,10 +118,18 @@ Name            Kind       Type            Which
 b               GLOBAL     int             1
 a               GLOBAL     int             0
 
-## Notes
-- Multiple errors may be reported for a single issue due to both name resolution and type checking phases.
-- The symbol table uses a stack-based scope system.
-- The `which` field represents the position of the variable in the scope.
+M[0][0] = 10;
+M[0][1] = 5;
 
-## Conclusion
-This project successfully implements AST construction, symbol table generation, semantic analysis, and error detection for a simple programming language. The compiler correctly handles valid programs and identifies semantic errors.
+int a = M[0][0];
+int b = M[0][1];
+
+int add = a + b;
+int sub = a - b;
+int mul = a * b;
+
+M[0][2] = add;
+M[0][3] = sub;
+M[0][4] = mul;
+
+
