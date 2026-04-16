@@ -53,19 +53,6 @@ M[0][3] = sub;
 M[0][4] = mul;
 ```
 
-### AST (Post-Order)
-
-```
-M[0][0] 10 MATRIX_ASSIGN
-M[0][1] 5 MATRIX_ASSIGN
-M[0][0] DECL(a) STMT_DECL
-M[0][1] DECL(b) STMT_DECL
-a b + DECL(add) STMT_DECL
-a b - DECL(sub) STMT_DECL
-a b * DECL(mul) STMT_DECL
-M[0][2] add MATRIX_ASSIGN
-M[0][3] sub MATRIX_ASSIGN
-M[0][4] mul MATRIX_ASSIGN
 ```
 
 ### Result
@@ -105,13 +92,6 @@ var [a] : int = expr (b + 1);
 M[0][0] = a;
 ```
 
-### AST (Post-Order)
-
-```
-5 DECL(a) STMT_DECL
-10 DECL(b) STMT_DECL
-b 1 + DECL(a) STMT_DECL
-M[0][0] a MATRIX_ASSIGN
 ```
 
 ### Errors
@@ -176,6 +156,3 @@ Semantic analysis finished with 4 error(s).
 | b    | GLOBAL | int | 1 |
 | a    | GLOBAL | int | 0 |
 
-## Conclusion
-
-The compiler successfully performs semantic analysis, symbol table construction, and error detection for valid and invalid programs.
