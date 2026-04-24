@@ -7,28 +7,29 @@
     gcc main.c semantic.c execute.c scanner.c parser.c -o compiler.exe -w
 
     ./compiler.exe tests/pass_1_basic.c
+    ./compiler.exe tests/pass_3_matrix.c
+    ./compiler.exe tests/pass_4_types.c
+    ./compiler.exe tests/pass_function_scope.c
     ./compiler.exe tests/error_2_redeclaration.c
     ./compiler.exe tests/error_1_undeclared.c
-    ./compiler.exe tests/pass_function_scope.c
-    ./compiler.exe tests/pass_4_types.c
 
 ---
 
 ## Grammar Rules
 
-### Variables (Non-terminals)
+Variables (Non-terminals)
 
     V = {Program, StmtList, Stmt, Decl, Block, ParamListOpt, ParamList, Param, Expr, Term, Factor, Type}
 
-### Terminals
+Terminals
 
     Σ = {int, float, id, =, ;, +, -, *, /, (, ), {, }, ,, print, M, [, ], number, float_number}
 
-### Start Symbol
+Start Symbol
 
     S = Program
 
-### Production Rules
+Production Rules
 
     Program → StmtList
 
@@ -75,7 +76,53 @@
 
 ## Test Results
 
-### Test 1: Matrix + Arithmetic
+---
+
+### Test 1: Basic Program
+
+Input:
+
+    int a = 10;
+    int b = 5;
+    int c = a + b;
+    print c;
+
+Output:
+
+    Parse successful!
+
+    AST:
+    ----------------
+    var [a] : int = expr 10;
+    var [b] : int = expr 5;
+    var [c] : int = expr (a + b);
+    print c;
+
+    Semantic Analysis:
+    ----------------
+
+    Semantic analysis finished with 0 error(s).
+
+    Symbol Table:
+    ----------------
+
+    Nested Symbol Table:
+    ====================
+
+    Scope Level 0:
+    -------------------------------------
+    Name            Kind       Type                 Which
+    a               GLOBAL     int                  0
+    b               GLOBAL     int                  1
+    c               GLOBAL     int                  2
+
+    Execution:
+    ----------------
+    OUTPUT: 15
+
+---
+
+### Test 2: Matrix + Arithmetic
 
 Input:
 
@@ -90,33 +137,83 @@ Input:
 
 Output:
 
+    Parse successful!
+
+    AST:
+    ----------------
+    M[0][0] = 10;
+    M[0][1] = 5;
+    var [a] : int = expr M[0][0];
+    var [b] : int = expr M[0][1];
+    var [add] : int = expr (a + b);
+    print add;
+
+    Semantic Analysis:
+    ----------------
+
+    Semantic analysis finished with 0 error(s).
+
+    Symbol Table:
+    ----------------
+
+    Nested Symbol Table:
+    ====================
+
+    Scope Level 0:
+    -------------------------------------
+    Name            Kind       Type                 Which
+    a               GLOBAL     int                  0
+    b               GLOBAL     int                  1
+    add             GLOBAL     int                  2
+
+    Execution:
+    ----------------
     OUTPUT: 15
 
 ---
 
-### Test 2: Redeclaration Error
+### Test 3: Type Handling (int + float)
 
 Input:
 
-    int a = 5;
     int a = 10;
+    float b = 2.5;
+
+    float result = a + b;
+    print result;
 
 Output:
 
-    semantic error: redeclaration of identifier 'a'
+    Parse successful!
 
----
+    AST:
+    ----------------
+    var [a] : int = expr 10;
+    var [b] : float = expr 2.500000;
+    var [result] : float = expr (a + b);
+    print result;
 
-### Test 3: Undeclared Variable
+    Semantic Analysis:
+    ----------------
 
-Input:
+    Semantic analysis finished with 0 error(s).
 
-    int a = 5;
-    int b = a + c;
+    Symbol Table:
+    ----------------
 
-Output:
+    Nested Symbol Table:
+    ====================
 
-    semantic error: undeclared identifier 'c'
+    Scope Level 0:
+    -------------------------------------
+    Name            Kind       Type                 Which
+    a               GLOBAL     int                  0
+    b               GLOBAL     float                1
+    result          GLOBAL     float                2
+
+    Execution:
+    ----------------
+    OUTPUT: 12.500000
 
 ---
 
@@ -138,92 +235,101 @@ Input:
 
 Output:
 
+    Parse successful!
+
+    AST:
+    ----------------
+    var [GlobalValue] : int = expr 10;
+    var [main] : function int code {
+    var [X] : int = expr 10;
+    var [LocalValue] : int = expr 5;
+    var [Result] : int = expr (X + LocalValue);
+    print Result;
+    }
+    print GlobalValue;
+
+    Semantic Analysis:
+    ----------------
+
+    Semantic analysis finished with 0 error(s).
+
+    Symbol Table:
+    ----------------
+
+    Nested Symbol Table:
+    ====================
+
+    Scope Level 2:
+    -------------------------------------
+    Name            Kind       Type                 Which
+    X               LOCAL      int                  0
+    LocalValue      LOCAL      int                  1
+    Result          LOCAL      int                  2
+
+    Scope Level 1:
+    -------------------------------------
+    Name            Kind       Type                 Which
+
+    Scope Level 0:
+    -------------------------------------
+    Name            Kind       Type                 Which
+    GlobalValue     GLOBAL     int                  0
+    main            GLOBAL     function int         1
+
+    Execution:
+    ----------------
     OUTPUT: 15
     OUTPUT: 10
 
 ---
 
-### Test 5: Type Handling (int + float)
+### Test 5: Redeclaration Error
 
 Input:
 
+    int a = 5;
     int a = 10;
-    float b = 2.5;
-
-    float result = a + b;
-
-    print result;
 
 Output:
 
-    OUTPUT: 12.500000
+    Parse successful!
 
----
-
-### Test 6: Complex Arithmetic Expression
-
-Input:
-
-    int B = 8;
-    int C = 6;
-
-    int RESULT = B + B * C / 2 - (3 + 4);
-    print RESULT;
-
-Output:
-
-    OUTPUT: 17
-
----
-
-## AST (Abstract Syntax Tree)
-
-The parser builds an AST that represents the structure of the program.
-
-Example:
-
-    int a = 10;
-    int b = 5;
-    int c = a + b;
-    print c;
-
-AST:
-
+    AST:
+    ----------------
+    var [a] : int = expr 5;
     var [a] : int = expr 10;
-    var [b] : int = expr 5;
-    var [c] : int = expr (a + b);
-    print c;
+
+    Semantic Analysis:
+    ----------------
+    semantic error: redeclaration of identifier 'a'
+
+    Semantic analysis finished with 1 error(s).
 
 ---
 
-## Symbol Table
+### Test 6: Undeclared Variable
 
-The compiler uses nested scopes:
+Input:
 
-    Level 2 → LOCAL
-    Level 1 → PARAM
-    Level 0 → GLOBAL
+    int a = 5;
+    int b = a + c;
 
-Example:
+Output:
 
-    int GlobalValue = 10;
+    Parse successful!
 
-    int main(int X) {
-        int LocalValue = 5;
-        int Result = X + LocalValue;
-    }
+    AST:
+    ----------------
+    var [a] : int = expr 5;
+    var [b] : int = expr (a + c);
 
-Symbol Table:
+    Semantic Analysis:
+    ----------------
+    semantic error: undeclared identifier 'c'
+    semantic error: undeclared identifier 'c'
+    semantic error: arithmetic operands must be numeric
+    semantic error: type mismatch in declaration 'b'
 
-    Scope Level 2:
-        LocalValue LOCAL
-        Result LOCAL
+    Semantic analysis finished with 4 error(s).
 
-    Scope Level 1:
-        X PARAM
 
-    Scope Level 0:
-        GlobalValue GLOBAL
-        main GLOBAL function
-
----
