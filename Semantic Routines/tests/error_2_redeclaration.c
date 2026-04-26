@@ -1,0 +1,4 @@
+int a = 5;
+int a = 10;
+
+print a;
