@@ -395,7 +395,54 @@ typedef enum {
     STMT_RETURN,
     STMT_BLOCK
 } stmt_t;
+/*
+    struct stmt represents a statement node.
 
+    kind:
+        tells what kind of statement it is.
+
+    decl:
+        used when statement is a declaration.
+        Example:
+            int a = 5;
+
+    name:
+        used for normal assignment.
+        Example:
+            a = 10;
+            name = "a"
+
+    target:
+        used for matrix assignment.
+        Example:
+            M[0][1] = x;
+            target = M[0][1]
+
+    init_expr:
+        used for for-loop initialization.
+
+    expr:
+        main expression.
+        Used in:
+            print expr;
+            return expr;
+            a = expr;
+            if(expr)
+
+    next_expr:
+        used for for-loop update expression.
+
+    body:
+        used for if body, loop body, or block body.
+
+    else_body:
+        used for else block.
+
+    next:
+        links statements together.
+        Example:
+            stmt1 -> stmt2 -> stmt3
+*/
 struct stmt {
     stmt_t kind;
 
@@ -412,7 +459,28 @@ struct stmt {
     struct stmt *else_body;
     struct stmt *next;
 };
+/*
+    stmt_create creates one statement node.
 
+    Not every field is used for every statement.
+
+    Example 1:
+        print a;
+
+        stmt_create(STMT_PRINT, 0, 0, expr, 0, 0, 0, 0)
+
+    Example 2:
+        int a = 5;
+
+        stmt_create(STMT_DECL, decl, 0, 0, 0, 0, 0, 0)
+
+    Example 3:
+        a = b + 5;
+
+        stmt_create(STMT_ASSIGN, 0, 0, expr, 0, 0, 0, 0)
+        then:
+        stmt->name = "a";
+*/
 static inline struct stmt *stmt_create(stmt_t kind,
                                        struct decl *decl,
                                        struct expr *init_expr,
@@ -444,9 +512,16 @@ static inline struct stmt *stmt_create(stmt_t kind,
 /********************************
         READABLE PRINT
 ********************************/
-
+/*
+    Forward declaration because param_list_print calls type_print.
+*/
 static inline void type_print(struct type *t);
+/*
+    Prints a parameter list.
 
+    Example:
+        x: int, y: float
+*/
 static inline void param_list_print(struct param_list *p)
 {
     if(!p) return;
@@ -459,7 +534,13 @@ static inline void param_list_print(struct param_list *p)
         param_list_print(p->next);
     }
 }
+/*
+    Prints a type in readable form.
 
+    Example:
+        TYPE_INTEGER -> int
+        TYPE_FLOAT   -> float
+*/
 static inline void type_print(struct type *t)
 {
     if(!t) return;
@@ -486,7 +567,15 @@ static inline void type_print(struct type *t)
             break;
     }
 }
+/*
+    Prints an expression in readable code-like form.
 
+    Example:
+        EXPR_ADD with left=a and right=b
+
+    prints:
+        (a + b)
+*/
 static inline void expr_print(struct expr *e)
 {
     if(!e) return;
@@ -551,7 +640,15 @@ static inline void expr_print(struct expr *e)
 }
 
 static inline void stmt_print(struct stmt *s);
+/*
+    Prints declarations in readable form.
 
+    Example:
+        int a = 5;
+
+    prints:
+        var [a] : int = expr 5;
+*/
 static inline void decl_print(struct decl *d)
 {
     while(d) {
@@ -842,6 +939,9 @@ static inline void decl_print_tree(struct decl *d, int lvl)
     }
 }
 
+/*
+    Prints expression nodes in tree style.
+*/
 static inline void stmt_print_tree(struct stmt *s, int lvl)
 {
     if(!s) return;
@@ -947,7 +1047,13 @@ static inline void stmt_print_tree(struct stmt *s, int lvl)
             stmt_print_tree(s->body, lvl + 2);
             break;
     }
+    /*
+        Print the next statement in the list.
 
+        This is how multiple statements are connected:
+
+            stmt1 -> stmt2 -> stmt3
+    */
     if(s->next) {
         indent(lvl);
         printf("next:\n");
