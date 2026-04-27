@@ -20,13 +20,8 @@ gcc main.c semantic.c execute.c scanner.c parser.c -o compiler.exe -w
 ./compiler.exe tests/error_assignment_type_mismatch.c
 ```
 
-## Language Overview
 
-This compiler supports integer variables, float variables, arithmetic expressions, assignment statements, print statements, matrix reads and writes using `M[i][j]`, function declarations with parameters, and nested scopes.
 
-## AST Design
-
-The AST follows the Chapter 6 style. The compiler uses structured nodes for declarations, statements, expressions, types, functions, and blocks. Statements are connected using the `next` pointer, and block statements use the `body` pointer to refer to the first statement inside the block.
 
 ---
 
