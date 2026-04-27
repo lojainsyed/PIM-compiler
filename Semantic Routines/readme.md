@@ -711,26 +711,4 @@ b               GLOBAL     float                1
 OUTPUT: 2.500000
 ```
 
-### Note
 
-Execution is printed for debugging. Semantically, this program is invalid because a float value is assigned to an int variable.
-
----
-
-## Design Decisions
-
-- The compiler supports nested scopes.
-- The compiler uses a symbol table stack.
-- Shadowing is allowed across different scopes.
-- Redeclaration is reported as an error only in the same scope.
-- The compiler supports int and float type checking.
-- Matrix operations are supported using `M[i][j]`.
-- Multiple semantic errors can be reported in one run.
-
-## Summary
-
-The compiler successfully implements AST construction, symbol table management, function and parameter handling, nested scopes, type checking, matrix read/write operations, and semantic error detection.
-
-## Final Statement
-
-The compiler follows standard compiler design principles and correctly handles AST construction, scope resolution, type checking, matrix operations, and semantic validation.
