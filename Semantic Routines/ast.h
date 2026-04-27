@@ -8,7 +8,15 @@
 /********************************
         TYPES
 ********************************/
+/*
+    type_t is an enum.
 
+    It represents all possible data types supported by the compiler.
+
+    Example:
+        int a;      -> TYPE_INTEGER
+        float b;    -> TYPE_FLOAT
+*/
 typedef enum {
     TYPE_BOOLEAN,
     TYPE_CHARACTER,
@@ -20,19 +28,62 @@ typedef enum {
     TYPE_FUNCTION
 } type_t;
 
-struct param_list;
 
+/*
+    Forward declaration.
+
+    struct type uses struct param_list,
+    so we declare param_list before fully defining it.
+*/
+struct param_list;
+/*
+    struct type represents a data type in the AST.
+
+    kind:
+        tells what type it is:
+        int, float, string, array, function, etc.
+
+    subtype:
+        used for compound types.
+        Example:
+            array of int
+            function returning int
+
+    params:
+        used only for function types.
+        It stores the function parameter list.
+*/
 struct type {
     type_t kind;
     struct type *subtype;
     struct param_list *params;
 };
+/*
+    struct param_list represents function parameters.
 
+    Example:
+        int add(int x, float y)
+
+    This becomes:
+
+        x -> y
+
+    using the next pointer.
+*/
 struct param_list {
     char *name;
     struct type *type;
     struct param_list *next;
 };
+
+/*
+    type_create creates a new type node.
+
+    Example:
+        type_create(TYPE_INTEGER, NULL, NULL)
+
+    creates an int type.
+*/
 
 static inline struct type *type_create(type_t kind,
                                        struct type *subtype,
@@ -45,6 +96,16 @@ static inline struct type *type_create(type_t kind,
     return t;
 }
 
+
+/*
+    param_list_create creates one parameter node.
+
+    Example:
+        int x
+
+    name = "x"
+    type = TYPE_INTEGER
+*/
 static inline struct param_list *param_list_create(char *name,
                                                    struct type *type,
                                                    struct param_list *next)
@@ -59,7 +120,24 @@ static inline struct param_list *param_list_create(char *name,
 /********************************
         EXPRESSIONS
 ********************************/
+/********************************
+        EXPRESSIONS
+********************************/
 
+/*
+    expr_t tells what kind of expression this node is.
+
+    Example:
+        a + b       -> EXPR_ADD
+        a - b       -> EXPR_SUB
+        a * b       -> EXPR_MUL
+        a / b       -> EXPR_DIV
+        a           -> EXPR_NAME
+        5           -> EXPR_INTEGER_LITERAL
+        2.5         -> EXPR_FLOAT_LITERAL
+        "hello"     -> EXPR_STRING_LITERAL
+        M[0][1]     -> EXPR_MATRIX_REF
+*/
 typedef enum {
     EXPR_ADD,
     EXPR_SUB,
@@ -71,7 +149,44 @@ typedef enum {
     EXPR_STRING_LITERAL,
     EXPR_MATRIX_REF
 } expr_t;
+/*
+    struct expr represents an expression node in the AST.
 
+    kind:
+        tells what kind of expression it is.
+
+    left/right:
+        used for binary expressions like:
+            a + b
+            x * y
+
+    name:
+        used for variable names.
+        Example:
+            a
+
+    integer_value:
+        used for integer literals.
+        Example:
+            10
+
+    float_value:
+        used for float literals.
+        Example:
+            2.5
+
+    string_literal:
+        used for string literals.
+        Example:
+            "hello"
+
+    row/col:
+        used for matrix reference.
+        Example:
+            M[0][1]
+            row = 0
+            col = 1
+*/
 struct expr {
     expr_t kind;
 
@@ -86,7 +201,15 @@ struct expr {
     struct expr *row;
     struct expr *col;
 };
+/*
+    expr_create creates a general expression node.
 
+    For example:
+        expr_create(EXPR_ADD, left, right)
+
+    creates:
+        left + right
+*/
 static inline struct expr *expr_create(expr_t kind,
                                        struct expr *left,
                                        struct expr *right)
@@ -107,20 +230,40 @@ static inline struct expr *expr_create(expr_t kind,
 
     return e;
 }
+/*
+    Creates an expression node for a variable name.
 
+    Example:
+        a
+
+    AST:
+        EXPR_NAME
+        name = "a"
+*/
 static inline struct expr *expr_create_name(char *n)
 {
     struct expr *e = expr_create(EXPR_NAME, 0, 0);
     e->name = n;
     return e;
 }
+/*
+    Creates an expression node for an integer literal.
 
+    Example:
+        10
+*/
 static inline struct expr *expr_create_integer_literal(int i)
 {
     struct expr *e = expr_create(EXPR_INTEGER_LITERAL, 0, 0);
     e->integer_value = i;
     return e;
 }
+/*
+    Creates an expression node for a float literal.
+
+    Example:
+        2.5
+*/
 
 static inline struct expr *expr_create_float_literal(double f)
 {
@@ -128,7 +271,12 @@ static inline struct expr *expr_create_float_literal(double f)
     e->float_value = f;
     return e;
 }
+/*
+    Creates an expression node for a string literal.
 
+    Example:
+        "hello"
+*/
 static inline struct expr *expr_create_string_literal(char *s)
 {
     struct expr *e = expr_create(EXPR_STRING_LITERAL, 0, 0);
@@ -136,6 +284,15 @@ static inline struct expr *expr_create_string_literal(char *s)
     return e;
 }
 
+/*
+    Creates an expression node for matrix reference.
+
+    Example:
+        M[0][1]
+
+    row = 0
+    col = 1
+*/
 static inline struct expr *expr_create_matrix_ref(struct expr *row,
                                                   struct expr *col)
 {
@@ -148,9 +305,34 @@ static inline struct expr *expr_create_matrix_ref(struct expr *row,
 /********************************
         DECLARATIONS
 ********************************/
+/*
+    Forward declaration.
 
+    struct decl uses struct stmt,
+    so we declare stmt before fully defining it.
+*/
 struct stmt;
+/*
+    struct decl represents variable declarations.
 
+    Example:
+        int a = 5;
+
+    name:
+        a
+
+    type:
+        int
+
+    value:
+        5
+
+    code:
+        used for function body if needed.
+
+    next:
+        links multiple declarations.
+*/
 struct decl {
     char *name;
     struct type *type;
@@ -158,7 +340,17 @@ struct decl {
     struct stmt *code;
     struct decl *next;
 };
+/*
+    decl_create creates one declaration node.
 
+    Example:
+        int a = 5;
+
+    creates:
+        name = a
+        type = int
+        value = 5
+*/
 static inline struct decl *decl_create(char *name,
                                        struct type *type,
                                        struct expr *value,
@@ -179,7 +371,19 @@ static inline struct decl *decl_create(char *name,
 /********************************
         STATEMENTS
 ********************************/
+/********************************
+        STATEMENTS
+********************************/
 
+/*
+    stmt_t tells what kind of statement this node represents.
+
+    Examples:
+        int a = 5;       -> STMT_DECL
+        a = b + 5;       -> STMT_ASSIGN
+        M[0][1] = a;     -> STMT_MATRIX_ASSIGN
+        print a;         -> STMT_PRINT
+*/
 typedef enum {
     STMT_DECL,
     STMT_EXPR,
