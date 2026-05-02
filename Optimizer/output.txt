@@ -1,0 +1,28 @@
+Parse successful!
+
+AST (Readable Form):
+--------------------
+M[0][0] = 10;
+M[0][1] = 5;
+var [a] : int = expr M[0][0];
+var [b] : int = expr M[0][1];
+var [add] : int = expr (a + b);
+var [sub] : int = expr (a - b);
+var [mul] : int = expr (a * b);
+M[0][2] = add;
+M[0][3] = sub;
+M[0][4] = mul;
+
+Semantic analysis finished with 0 error(s).
+
+Symbol Table:
+=============
+--------------------------------------------------
+Name            Kind       Type            Which
+--------------------------------------------------
+mul             GLOBAL     int 4    
+sub             GLOBAL     int 3    
+add             GLOBAL     int 2    
+b               GLOBAL     int 1    
+a               GLOBAL     int 0    
+--------------------------------------------------
