@@ -1,12 +1,12 @@
-# 🧠 Compiler with Optimizer (AST → IR → PIM Code)
+#  Compiler with Optimizer (AST → IR → PIM Code)
 
-## 📌 Overview
+##  Overview
 
 This project implements a complete compiler pipeline with optimization support. The compiler processes input programs, builds an Abstract Syntax Tree (AST), performs semantic analysis, applies optimizations, generates Intermediate Representation (IR), reconstructs the AST, and finally produces assembly-like PIM code.
 
 ---
 
-## ⚙️ Compiler Pipeline
+##  Compiler Pipeline
 
 ```
 Input Program
@@ -30,7 +30,7 @@ Code Generation (PIM Assembly)
 
 ---
 
-## 🚀 How to Run
+##  How to Run
 
 ### Compile
 
@@ -126,11 +126,11 @@ x / 1 → x
 
 ---
 
-## 🧪 Test Cases & Results
+##  Test Cases & Results
 
 ---
 
-### ✅ Test 1: Constant Folding
+### Test 1: Constant Folding
 
 **Input**
 
@@ -165,7 +165,7 @@ Reduction        : 100%
 
 ---
 
-### ✅ Test 2: Strength Reduction
+### Test 2: Strength Reduction
 
 **Input**
 
@@ -194,7 +194,7 @@ BUT multiplication removed (cheaper execution)
 
 ---
 
-### ✅ Test 3: Dead Code Elimination
+### Test 3: Dead Code Elimination
 
 **Input**
 
@@ -223,7 +223,7 @@ Removed          : 2
 
 ---
 
-### ✅ Test 4: Algebraic Simplification
+###  Test 4: Algebraic Simplification
 
 **Input**
 
