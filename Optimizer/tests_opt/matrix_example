@@ -1,0 +1,12 @@
+M[0][0] = 10;
+M[0][1] = 5;
+
+int a = M[0][0];
+int b = M[0][1];
+
+int sum = a + b;
+int x = sum + 0;
+int y = x * 1;
+int z = 0;   // dead
+
+print y;
