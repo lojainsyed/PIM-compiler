@@ -24,9 +24,9 @@ _[A-Za-z0-9_]+                 { return TOKEN_ERROR; }
 0{DIGIT}+                      { return TOKEN_ERROR; }
 
 0                              { yylval.fvalue = atof(yytext); return TOKEN_NUMBER; }
-[1-9]{DIGIT}*                  { yylval.fvalue = atof(yytext); return TOKEN_NUMBER; }\\yylval.fvalue = atof(yytext) converts  a number written as text in to value 
+[1-9]{DIGIT}*                  { yylval.fvalue = atof(yytext); return TOKEN_NUMBER; }     /*  yylval.fvalue = atof(yytext)  Convert the integer text into a numeric value */
 
-{LETTER}({LETTER}|{DIGIT}|_)*  { yylval.name = strdup(yytext); return TOKEN_IDENT; }\\yylval.name = strdup(yytext); stores identifier in to memory 
+{LETTER}({LETTER}|{DIGIT}|_)*  { yylval.name = strdup(yytext); return TOKEN_IDENT; }   /* yylval.name = strdup(yytext) Copy the identifier name into memory so the parser/AST can use it later */
 
 "="                            { return TOKEN_ASSIGN; }
 "+"                            { return TOKEN_PLUS; }
