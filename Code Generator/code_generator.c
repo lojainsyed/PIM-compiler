@@ -5,20 +5,12 @@
 /*
     Code Generator for PIM ISA
 
-    This version does three important things:
+    This version generates scalar instructions:
+        sldi, sadd, ssub, smul, sdiv
 
-    1. Generates real scalar instructions:
-        sldi, sadd, ssub, smul
-
-    2. Generates real matrix memory instructions:
-        sld   = global memory -> register
-        lldi  = immediate -> local memory
-        st    = local memory -> global memory
-
-    3. Keeps scalar variables in registers using a variable-register map:
-        a -> $1
-        b -> $2
-        c -> $3
+    NOTE:
+    sdiv is a custom extension added for this project.
+    The original PIM ISA paper does not include scalar division.
 */
 
 static int reg_counter = 1;
@@ -76,15 +68,6 @@ static int get_var_reg(char *name)
    Matrix Address Calculation
    ----------------------------- */
 
-/*
-    M[row][col] address:
-
-    address = MATRIX_BASE + ((row * MATRIX_COLS + col) * ELEMENT_SIZE)
-
-    MATRIX_BASE = 1000
-    MATRIX_COLS = 5
-    ELEMENT_SIZE = 4 bytes
-*/
 static int matrix_address_codegen(struct expr *matrix_ref)
 {
     int row_reg = new_reg();
@@ -94,11 +77,6 @@ static int matrix_address_codegen(struct expr *matrix_ref)
     int size_reg = new_reg();
     int base_reg = new_reg();
 
-    /*
-        Important:
-        For sld and st, the address register should be even.
-        So we force final address register to be even if needed.
-    */
     int addr_reg = new_reg();
     if(addr_reg % 2 != 0) {
         addr_reg = new_reg();
@@ -146,9 +124,6 @@ static int matrix_address_codegen(struct expr *matrix_ref)
    Expression Code Generation
    ----------------------------- */
 
-/*
-    expr_codegen returns the register that contains the expression result.
-*/
 static int expr_codegen(struct expr *e)
 {
     if(!e) return 0;
@@ -189,14 +164,6 @@ static int expr_codegen(struct expr *e)
 
             int addr_reg = matrix_address_codegen(e);
 
-            /*
-                sld $rd, $rs1, offset_byte
-
-                Paper meaning:
-                $rd = GMem[$rs1 + offset_byte, ~+3]
-
-                This loads one 4-byte value from global memory to register.
-            */
             printf("# load matrix value from global memory into register\n");
             printf("sld $%d, $%d, 0\n", reg, addr_reg);
 
@@ -234,8 +201,13 @@ static int expr_codegen(struct expr *e)
         }
 
         case EXPR_DIV: {
+            int l = expr_codegen(e->left);
+            int r = expr_codegen(e->right);
             int reg = new_reg();
-            printf("# division is not supported in this selected ISA subset\n");
+
+            printf("# divide left expression by right expression\n");
+            printf("sdiv $%d, $%d, $%d\n", reg, l, r);
+
             return reg;
         }
 
@@ -251,24 +223,6 @@ static int expr_codegen(struct expr *e)
    Matrix Store Code Generation
    ----------------------------- */
 
-/*
-    For:
-
-        M[i][j] = value;
-
-    We treat M as global memory.
-
-    If value is integer literal:
-        1. compute GMem address of M[i][j]
-        2. use lldi to put immediate into temporary local memory
-        3. use st to store local memory to global memory
-
-    lldi:
-        LMem[$rd + offset] = imm
-
-    st:
-        GMem[$rd + offset] = LMem[$rs1 + offset]
-*/
 static void matrix_store_codegen(struct expr *target, struct expr *value)
 {
     printf("\n# matrix write ");
@@ -295,14 +249,6 @@ static void matrix_store_codegen(struct expr *target, struct expr *value)
 
     } else {
 
-        /*
-            If RHS is variable/expression, it is already in a register.
-            The paper ISA gives st for LMem -> GMem, not register -> GMem.
-            So we clearly document this step.
-
-            For your course project, this comment is acceptable because you are
-            showing where the computed value would be stored before st.
-        */
         int value_reg = expr_codegen(value);
 
         printf("# computed RHS value is in register $%d\n", value_reg);
@@ -331,13 +277,6 @@ static void stmt_codegen(struct stmt *s)
                 if(s->decl->value) {
                     int r = expr_codegen(s->decl->value);
 
-                    /*
-                        Scalar variables are kept in registers.
-                        Example:
-                            int a = 10;
-                        becomes:
-                            a -> $1
-                    */
                     store_var_reg(s->decl->name, r);
 
                     printf("# variable %s stored in register $%d\n",
