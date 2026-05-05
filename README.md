@@ -1,16 +1,16 @@
-# 🧠 IM Compiler
+# Compiler
 
 > A complete compiler pipeline for a restricted C-like language, targeting a **Processing-in-Memory (PIM)** Instruction Set Architecture (ISA).
 
 ---
 
-## 📖 Overview
+##  Overview
 
 This project translates high-level programs into PIM assembly instructions, demonstrating how computation can be performed directly inside memory.
 
 ---
 
-## 🎯 Features
+##  Features
 
 - Lexical Analysis (Flex)
 -  Syntax Analysis (Bison)
@@ -23,7 +23,7 @@ This project translates high-level programs into PIM assembly instructions, demo
 
 ---
 
-## 🧠 Source Language
+##  Source Language
 
 Supports:
 - `int`, `float` variables
@@ -306,7 +306,7 @@ For this project, I used generative AI tools to support my understanding and dev
 
 I used ChatGPT for:
 - Understanding compiler concepts such as AST, symbol tables, and code generation
-- Debugging issues in Flex/Bison integration
+- Debugging issues 
 - Clarifying how to structure AST nodes and semantic analysis
 - Generating examples for testing and validation
 - Improving documentation and README formatting
