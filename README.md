@@ -238,36 +238,54 @@ address = BASE + ((row × COLS + col) × 4)
 ---
 
 ## ✅ Test Case (End-to-End)
-
 ### Input
 
-```c
-M[0][0] = 10;
-M[0][1] = 5;
+```
+int a = 8;
+int b = 4;
+int c = 2;
 
-int a = M[0][0];
-int b = M[0][1];
+int result = a + b * c - (3 + 1);
 
-int add = a + b;
-
-M[0][2] = add;
-
-print add;
+print result;
 ```
 
-### Generated PIM Assembly
-
-```asm
-sldi $1, 10
-sldi $2, 5
-sadd $3, $1, $2
-st M[0][2], $3
-```
-
-### Output
+### Code Generation Output
 
 ```
-OUTPUT: 15
+===== PIM CODE =====
+
+# declaration a
+sldi $1, 8    # integer literal
+# variable a stored in register $1
+
+# declaration b
+sldi $2, 4    # integer literal
+# variable b stored in register $2
+
+# declaration c
+sldi $3, 2    # integer literal
+# variable c stored in register $3
+
+# declaration result
+# use variable a from $1
+# use variable b from $2
+# use variable c from $3
+# multiply left and right expression
+smul $4, $2, $3
+# add left and right expression
+sadd $5, $1, $4
+sldi $6, 3    # integer literal
+sldi $7, 1    # integer literal
+# add left and right expression
+sadd $8, $6, $7
+# subtract right expression from left expression
+ssub $9, $5, $8
+# variable result stored in register $9
+
+# print statement
+# use variable result from $9
+# output value stored in register $9
 ```
 
 ---
