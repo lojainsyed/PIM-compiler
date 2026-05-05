@@ -12,11 +12,10 @@ This project translates high-level programs into PIM assembly instructions, demo
 
 ##  Features
 
-- Lexical Analysis (Flex)
--  Syntax Analysis (Bison)
+- Scanner (Flex)
+-  Parser (Bison)
 -  AST Construction
 -  Semantic Analysis (Type + Scope Checking)
--  Intermediate Representation (IR)
 -  Optimization
 - Code Generation (PIM ISA)
 
