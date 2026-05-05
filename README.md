@@ -140,12 +140,26 @@ Factor → M [ Expr ] [ Expr ]
 
 ```
 PROGRAM
-└── STMT_LIST
-    ├── DECL a = 10
-    ├── DECL b = 5
-    ├── DECL add = (a + b)
-    ├── MATRIX_ASSIGN M[0][2] = add
-    └── PRINT add
+└── stmt_list:
+    ├── STMT_DECL
+    │   └── DECL name=a
+    │       ├── TYPE int
+    │       └── EXPR_INT value=10
+    ├── STMT_DECL
+    │   └── DECL name=b
+    │       ├── TYPE int
+    │       └── EXPR_INT value=5
+    ├── STMT_DECL
+    │   └── DECL name=sum
+    │       ├── TYPE int
+    │       └── EXPR_ADD
+    │           ├── EXPR_NAME name=a
+    │           └── EXPR_NAME name=b
+    ├── STMT_MATRIX_ASSIGN
+    │   ├── EXPR_MATRIX_REF [row=0][col=2]
+    │   └── EXPR_NAME name=sum
+    └── STMT_PRINT
+        └── EXPR_NAME name=sum
 ```
 
 ---
