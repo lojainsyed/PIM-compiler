@@ -12,14 +12,14 @@ This project translates high-level programs into PIM assembly instructions, demo
 
 ## 🎯 Features
 
-- ✅ Lexical Analysis (Flex)
-- ✅ Syntax Analysis (Bison)
-- ✅ AST Construction
-- ✅ Semantic Analysis (Type + Scope Checking)
-- ✅ Intermediate Representation (IR)
-- ✅ Optimization
-- ✅ Code Generation (PIM ISA)
-- ✅ Execution
+- Lexical Analysis (Flex)
+-  Syntax Analysis (Bison)
+-  AST Construction
+-  Semantic Analysis (Type + Scope Checking)
+-  Intermediate Representation (IR)
+-  Optimization
+- Code Generation (PIM ISA)
+
 
 ---
 
@@ -311,9 +311,6 @@ I used ChatGPT for:
 - Generating examples for testing and validation
 - Improving documentation and README formatting
 
-### Important Note
-
-All core implementation — including the Scanner (Flex), Parser (Bison), AST design, Semantic analysis, Code generation, and Optimizer logic — was written and understood by me. AI was used only as a support tool for explanation and guidance.
 
 ### Example Prompt
 
@@ -323,4 +320,4 @@ All core implementation — including the Scanner (Flex), Parser (Bison), AST de
 
 ---
 
-*If I had not used any AI tools, I would explicitly state that. However, in this project, AI was used responsibly as a learning aid and not as a replacement for implementation work.*
+
