@@ -337,7 +337,8 @@ For this project, I used generative AI tools to support my understanding and dev
 
 I used ChatGPT for:
 - Understanding compiler concepts such as AST, symbol tables, and code generation
-- Debugging issues 
+- Debugging issues
+- Writing and understanding of code
 - Clarifying how to structure AST nodes and semantic analysis
 - Generating examples for testing and validation
 - Improving documentation and README formatting
