@@ -10,7 +10,7 @@ This project translates high-level programs into PIM assembly instructions, demo
 
 ---
 
-##  Features
+##  Stages
 
 - Scanner (Flex)
 -  Parser (Bison)
